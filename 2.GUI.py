@@ -25,9 +25,6 @@ import numpy as np
 from tqdm import tqdm
 from PyQt5 import QtGui, QtCore
 
-
-
-
 global minDisparity
 minDisparity = 0;
 global numDisparities
@@ -153,6 +150,9 @@ class second_window(QWidget):
         self.canvas = FigureCanvas(self.figure)
         self.figure.subplots_adjust(0.2, 0.4, 0.8, 1)      
         pybutton = QPushButton('graph', self)        
+
+        pybutton_data = QPushButton('print_settings', self) 
+
         global axis_x
         axis_x=0
         pybutton.clicked.connect(self.clickMethod)
@@ -162,6 +162,15 @@ class second_window(QWidget):
         layout.setContentsMargins(50,100,0,11) # move background
         layout.setGeometry(QRect(0, 0, 80, 68))# nothing  
         layout.addWidget(self.canvas)        
+
+        pybutton_data.clicked.connect(self.settings)
+        pybutton_data.move(50, 50)
+        pybutton_data.resize(100,32)        
+        layout = QVBoxLayout()
+        layout.setContentsMargins(50,100,0,11) # move background
+        layout.setGeometry(QRect(0, 0, 80, 68))# nothing  
+        layout.addWidget(self.canvas)      
+
       # input dataufoff value  
         self.le_num1 = QLineEdit()
         self.le_num1.setFixedSize(50, 20) # size
@@ -237,64 +246,37 @@ class second_window(QWidget):
         layout.addWidget(self.pb_num7)
         self.setLayout(layout)
 
-        
-    def clickMethod(self):
 
+    def settings(self):
+         print ("minDisparity", minDisparity)    
+         print ("numDisparities",numDisparities)
+         print ("blockSize", blockSize)
+         print ("disp12MaxDiff", disp12MaxDiff)
+         print ("uniquenessRatio", uniquenessRatio)
+         print ("speckleWindowSize", speckleWindowSize)
+         print ("speckleWindowSize", speckleRange)    
 
-         super().__init__()
-         self.left = 400
-         self.top = 400
-         self.width = 640
-         self.height = 480
-          
-          
-         self.title = 'PyQt5 Video'
-         self.setWindowTitle(self.title)
-         self.setGeometry(500, 400, self.width, self.height)
- 
-         label = QLabel(self)
-         cap = cv2.VideoCapture(0)
-
-              
-         print ("ok1")
+    def clickMethod(self):              
          camera1 = cv2.VideoCapture(1)
-         camera2 = cv2.VideoCapture(2)
+         camera2 = cv2.VideoCapture(2)         
          win_size = 5
-         print ("ok2")         
+         dim =(200,200)         
          while 1:
-
-          ret, frames = cap.read()
-          rgbImage = cv2.cvtColor(frames, cv2.COLOR_BGR2RGB)
-          convertToQtFormat = QtGui.QImage(rgbImage.data, rgbImage.shape[1], rgbImage.shape[0], QtGui.QImage.Format_RGB888)
-          convertToQtFormat = QtGui.QPixmap.fromImage(convertToQtFormat)
-          pixmap = QPixmap(convertToQtFormat)
-          resizeImage = pixmap.scaled(640, 480, QtCore.Qt.KeepAspectRatio)
-          QApplication.processEvents()
-          label.setPixmap(resizeImage)
-          self.show()
-
-
 
                    
           #stereo = cv2.StereoSGBM_create(minDisparity, numDisparities, blockSize, disp12MaxDiff,
           #                           uniquenessRatio, speckleWindowSize, speckleRange)
-          print ("ok3")
           stereo = cv2.StereoSGBM_create(minDisparity, numDisparities, blockSize, uniquenessRatio, speckleWindowSize, speckleRange, disp12MaxDiff)#,
 #                                         P1 = 8*3*win_size**2, P2 =32*3*win_size**2)
-          print ("ok4")
           (grabbed, frame1) = camera1.read()
           (grabbed, frame2) = camera2.read()
-          img_1_undistorted = frame1 #cv2.undistort(frame1, mtxL, distL, None, new_mtxL)
-          img_2_undistorted = frame2 #cv2.undistort(frame2, mtxR, distR, None, new_mtxR)
-          print ("ok5")
+          img_1_undistorted = cv2.undistort(frame1, mtxL, distL, None, new_mtxL)  #frame1
+          img_2_undistorted = cv2.undistort(frame2, mtxR, distR, None, new_mtxR)   #frame2 
+          
          # disp = stereo.compute(frame1, frame2).astype(np.float32)
-          print ("ok6")
           mapxL,mapyL = cv2.initUndistortRectifyMap(mtxL,distL,None,new_mtxL,(w,h),5)
-          print ("ok7")
           mapxR,mapyR = cv2.initUndistortRectifyMap(mtxR,distR,None,new_mtxR,(w,h),5)
-          print ("ok8")
           img_1_undistorted = cv2.remap(img_1_undistorted,mapxL,mapyL,cv2.INTER_LINEAR)
-          print ("ok9")
           img_2_undistorted = cv2.remap(img_2_undistorted,mapxR,mapyR,cv2.INTER_LINEAR)
 
           img_1_undistorted = cv2.undistort(frame1, mtxL, distL, None, new_mtxL)
@@ -302,17 +284,49 @@ class second_window(QWidget):
 
          # disp = stereo.compute(frame1, frame2)
           disp = stereo.compute(img_1_undistorted, img_2_undistorted)
-          print ("ok6")
+          disp = cv2.resize(disp, dim)
+
+          disp = cv2.erode(disp, None, iterations=1)
+          disp = cv2.dilate(disp, None, iterations=1)
+
+          
           cv2.imshow("disparity", disp)
-          cv2.waitKey(1)
+       #   cv2.waitKey(1)
+          x1=000
+          y1=100
+          x2=900
+          y2=100
+          line_thickness = 2
+          cv2.line(frame1, (x1, y1+50), (x2, y2+50), (10, 155, 10), thickness=line_thickness)
+          cv2.line(frame1, (x1, y1-50), (x2, y2-50), (90, 55, 60), thickness=line_thickness)
+          cv2.line(frame1, (x1, y1+150), (x2, y2+150), (90, 55, 60), thickness=line_thickness)
+          cv2.line(frame1, (x1, y1), (x2, y2), (60, 70, 100), thickness=line_thickness)
+
+          cv2.line(frame1, (x1, y1+450), (x2, y2+450), (10, 155, 10), thickness=line_thickness)
+          cv2.line(frame1, (x1, y1+300), (x2, y2+300), (5, 15, 60), thickness=line_thickness)
+          cv2.line(frame1, (x1, y1+100), (x2, y2+100), (67, 45, 60), thickness=line_thickness)
+          cv2.line(frame1, (x1, y1+200), (x2, y2+200), (167, 145, 160), thickness=line_thickness)
+          cv2.line(frame1, (x1, y1+250), (x2, y2+250), (160, 170, 10), thickness=line_thickness)
+
+          cv2.line(frame2, (x1, y1+50), (x2, y2+50), (10, 155, 10), thickness=line_thickness)
+          cv2.line(frame2, (x1, y1-50), (x2, y2-50), (90, 55, 60), thickness=line_thickness)
+          cv2.line(frame2, (x1, y1+150), (x2, y2+150), (90, 55, 60), thickness=line_thickness)
+          cv2.line(frame2, (x1, y1), (x2, y2), (60, 70, 100), thickness=line_thickness)
+
+          cv2.line(frame2, (x1, y1+450), (x2, y2+450), (10, 155, 10), thickness=line_thickness)
+          cv2.line(frame2, (x1, y1+300), (x2, y2+300), (5, 15, 60), thickness=line_thickness)
+          cv2.line(frame2, (x1, y1+100), (x2, y2+100), (67, 45, 60), thickness=line_thickness)
+          cv2.line(frame2, (x1, y1+200), (x2, y2+200), (167, 145, 160), thickness=line_thickness)
+          cv2.line(frame2, (x1, y1+250), (x2, y2+250), (160, 170, 10), thickness=line_thickness)
 
 
+          frame1 = cv2.resize(frame1, dim)
+          frame2 = cv2.resize(frame2, dim)
+          both = np.concatenate((frame1, frame2), axis=1)
+          cv2.imshow('frame diff ',both)      
 
-
-
-
-
-
+          if cv2.waitKey(1) & 0xFF == ord('q'):
+           break
           
 # прогать тута
          thread=threading.Thread(target=self.clickMethod, args=())
@@ -322,14 +336,15 @@ class second_window(QWidget):
         value, r = QInputDialog.getInt(self, 'Input dialog', 'minDisparity:')
         global minDisparity
         minDisparity = value
-        print ("minDisparity", minDisparity)
-        
+        print ("minDisparity", minDisparity)        
     def show_dialog_num2(self):
         value, r = QInputDialog.getInt(self, 'Input dialog', 'numDisparities:')
         global numDisparities
-        numDisparities = value
-        print ("numDisparities", numDisparities)
-        
+        if value in [32,64,128,256,512,1024,2048]:
+         numDisparities = value
+         print ("numDisparities", numDisparities)
+        else:
+         print ("not correct value, should be divided to 32")         
     def show_dialog_num3(self):
         value, r = QInputDialog.getInt(self, 'Input dialog', 'blockSize:')
         global blockSize
@@ -340,19 +355,16 @@ class second_window(QWidget):
         global disp12MaxDiff
         disp12MaxDiff = value
         print ("disp12MaxDiff", disp12MaxDiff)
-
     def show_dialog_num5(self):
         value, r = QInputDialog.getInt(self, 'Input dialog', 'uniquenessRatio:')
         global uniquenessRatio
         uniquenessRatio = value
         print ("uniquenessRatio", uniquenessRatio)
-
     def show_dialog_num6(self):
         value, r = QInputDialog.getInt(self, 'Input dialog', 'speckleWindowSize:')
         global speckleWindowSize
         speckleWindowSize = value
         print ("speckleWindowSize", speckleWindowSize)
-
     def show_dialog_num7(self):
         value, r = QInputDialog.getInt(self, 'Input dialog', 'speckleRange:')
         global speckleRange
