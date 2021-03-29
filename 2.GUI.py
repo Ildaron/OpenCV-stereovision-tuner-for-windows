@@ -245,8 +245,6 @@ class second_window(QWidget):
         self.pb_num7.move(390, 200)        
         layout.addWidget(self.pb_num7)
         self.setLayout(layout)
-
-
     def settings(self):
          print ("minDisparity", minDisparity)    
          print ("numDisparities",numDisparities)
@@ -255,15 +253,12 @@ class second_window(QWidget):
          print ("uniquenessRatio", uniquenessRatio)
          print ("speckleWindowSize", speckleWindowSize)
          print ("speckleWindowSize", speckleRange)    
-
     def clickMethod(self):              
          camera1 = cv2.VideoCapture(1)
          camera2 = cv2.VideoCapture(2)         
          win_size = 5
          dim =(200,200)         
-         while 1:
-
-                   
+         while 1:                   
           #stereo = cv2.StereoSGBM_create(minDisparity, numDisparities, blockSize, disp12MaxDiff,
           #                           uniquenessRatio, speckleWindowSize, speckleRange)
           stereo = cv2.StereoSGBM_create(minDisparity, numDisparities, blockSize, uniquenessRatio, speckleWindowSize, speckleRange, disp12MaxDiff)#,
@@ -282,15 +277,33 @@ class second_window(QWidget):
           img_1_undistorted = cv2.undistort(frame1, mtxL, distL, None, new_mtxL)
           img_2_undistorted = cv2.undistort(frame2, mtxR, distR, None, new_mtxR)
 
-         # disp = stereo.compute(frame1, frame2)
           disp = stereo.compute(img_1_undistorted, img_2_undistorted)
           disp = cv2.resize(disp, dim)
 
           disp = cv2.erode(disp, None, iterations=1)
           disp = cv2.dilate(disp, None, iterations=1)
 
-          
+          #ROI
+          disp_roi=disp[0:50,0:50]
+
+          #calculate dominant color
+          disp_roi = np.average(disp_roi, axis=0)
+          disp_roi = np.average(disp_roi, axis=0)
+          disp_avr = np.array(disp_roi, dtype=np.uint8)          
+
+          print("disp_avr", disp_avr)        
+
           cv2.imshow("disparity", disp)
+
+
+
+
+
+          
+          #plt.imshow(disp,'gray')
+          #plt.ion()
+          #plt.pause(.0001)
+          #plt.show()
        #   cv2.waitKey(1)
           x1=000
           y1=100
