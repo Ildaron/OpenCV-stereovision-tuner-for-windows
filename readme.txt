@@ -2,7 +2,6 @@
 Check number of your cameras
          camera1 = cv2.VideoCapture(1)
          camera2 = cv2.VideoCapture(2)  
-         
 #### Example of result for wavelet transform
 
 ![alt tag](https://github.com/Ildaron/3.eeg_recognation/blob/master/New%20Bitmap%20Image.bmp "Example of result for wavelet transform")​
