@@ -3,7 +3,7 @@ Check number of your cameras
          camera1 = cv2.VideoCapture(1)
          camera2 = cv2.VideoCapture(2)  
  #### Example of GUI
-![alt tag]https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/PIC.1.bmp  "Example of result for wavelet transform")​
+![alt tag] https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/PIC.1.bmp  "Example of result for wavelet transform")​
 
 
 
