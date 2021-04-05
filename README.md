@@ -12,16 +12,16 @@ After that run the code - "GUI_Real_time.py"
 
 
 
-![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.1.bmp "Example of chessboard process")
+![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.1.bmp "Example of chessboard process")​
 
 
 
 
 Example of GUI
-![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.2.bmp "Example of GUI")
+![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.2.bmp "Example of GUI")​
 
 My device, can be used any cameras 
-![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.3.bmp "My device, can be used any cameras ")
+![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.3.bmp "My device, can be used any cameras")​
 
 
 
