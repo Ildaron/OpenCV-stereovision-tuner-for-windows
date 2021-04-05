@@ -9,4 +9,4 @@ See attached image "chessboard". Make images from 2 cameras by code - "1.Make_im
 
 #### Example of result for wavelet transform
 
-![alt tag](https://github.com/Ildaron/3.eeg_recognation/blob/master/New%20Bitmap%20Image.bmp "Example of result for wavelet transform")​
+![alt tag](https://github.com/Ildaron/3.eeg_recognation/blob/master/New%20Bitmap%20Image.bmp "Example of result for wavelet transform")
