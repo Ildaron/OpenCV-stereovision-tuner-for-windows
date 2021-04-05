@@ -1,10 +1,11 @@
 OpenCV stereovision tuner for windows
 
 1.GUI without calibration process - "GUI_Real_time_without_calibration.py" 
-Check number of your cameras  
+Check number of your cameras:  
 camera1 = cv2.VideoCapture(1)  
-camera2 = cv2.VideoCapture(2)    
-       
+and  
+camera2 = cv2.VideoCapture(2)  
+  
 2. GUI withcalibration process 
 Make images from 2 cameras by code - "1.Make_images.py"
 
