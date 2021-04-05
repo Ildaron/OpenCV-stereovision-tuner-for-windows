@@ -7,4 +7,4 @@ In the first need prepare  image with a chessboard for calibration process and p
 See attached image "chessboard". Make images from 2 cameras by code - "1.Make_images.py"
 
 
-![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/PIC.1.png)
+![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/PIC.1.png)
