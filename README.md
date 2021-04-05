@@ -1,4 +1,4 @@
-### OpenCV stereovision tuner for windows
+----------------------------------- OpenCV stereovision tuner for windows
 
 ### 1.GUI without calibration process - "GUI_Real_time_without_calibration.py" 
 Check number of your cameras:  
