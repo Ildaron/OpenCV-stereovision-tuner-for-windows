@@ -10,20 +10,17 @@ In the first need prepare  image with a chessboard for calibration process and p
 
 After that run the code - "GUI_Real_time.py"
 
-
 ####Example of chessboard process
-![alt text]( "Example of chessboard process")​
-
-#### Example of result for Fast Fourier  transform
 ![alt tag](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.1.bmp "Example of result for Fast Fourier  transform")​
 
 
-
 ####Example of GUI
-![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.2.bmp "Example of GUI")​
+![alt tag](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.2.bmp "Example of result for Fast Fourier  transform")​
+
 
 ####My device, can be used any cameras 
-![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.3.bmp "My device, can be used any cameras")​
+![alt tag](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.3.bmp "Example of result for Fast Fourier  transform")​
+
 
 
 
