@@ -12,9 +12,10 @@ After that run the code - "GUI_Real_time.py"
 
 
 ####Example of chessboard process
-![alt text](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.1.bmp "Example of chessboard process")​
+![alt text]( "Example of chessboard process")​
 
-
+#### Example of result for Fast Fourier  transform
+![alt tag](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.1.bmp "Example of result for Fast Fourier  transform")​
 
 
 
