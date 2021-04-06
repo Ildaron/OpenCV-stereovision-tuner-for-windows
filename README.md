@@ -22,7 +22,7 @@ At the expense of computer vision, the position of the object in the X, Y plane 
 ![alt tag](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.2.bmp "Example of result for Fast Fourier  transform")​
 
 
-#### My device, can be used any cameras 
+#### Device, but can be used any cameras 
 ![alt tag](https://github.com/Ildaron/OpenCV-stereovision-tuner-for-windows/blob/master/pic.3.bmp "Example of result for Fast Fourier  transform")​
 
 
