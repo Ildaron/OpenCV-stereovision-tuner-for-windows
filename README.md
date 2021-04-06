@@ -11,8 +11,7 @@ In the first need prepare  image with a chessboard for calibration process and p
 
 After that run the code - "GUI_Real_time.py"
 
-
-
+At the expense of computer vision, the position of the object in the X, Y plane is determined - based on which its ROI area is taken. Then we use stereo vision to compile a depth map and for a given ROI with the NumPy library tool - np.average we calculated the average value for the pixels of this area, which will allow us to calculate the distance to the object. 
 
 
 #### Example of chessboard process
