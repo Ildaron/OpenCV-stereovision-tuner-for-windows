@@ -1,5 +1,8 @@
-# OpenCV stereovision tuner for windows
+Full explanation here 
+Rakhmatulin, I.; Pomazov, E. Low-Cost Stereovision System (Disparity Map) For Few Dollars. Preprints 2021, 2021040282 (doi: 10.20944/preprints202104.0282.v1).
+https://www.preprints.org/manuscript/202104.0282/v1
 
+# OpenCV stereovision tuner for windows
 ### 1.GUI without calibration process - "GUI_Real_time_without_calibration.py" 
 Check number of your cameras:  
 camera1 = cv2.VideoCapture(1)  
