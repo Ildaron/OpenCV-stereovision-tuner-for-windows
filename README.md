@@ -1,4 +1,3 @@
-Full explanation here 
 Rakhmatulin, I.; Pomazov, E. Low-Cost Stereovision System (Disparity Map) For Few Dollars. Preprints 2021, 2021040282 (doi: 10.20944/preprints202104.0282.v1).
 https://www.preprints.org/manuscript/202104.0282/v1
 
