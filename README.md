@@ -1,8 +1,7 @@
 Rakhmatulin, I.; Pomazov, E. Low-Cost Stereovision System (Disparity Map) For Few Dollars. Preprints 2021, 2021040282 (doi: 10.20944/preprints202104.0282.v1).
 https://www.preprints.org/manuscript/202104.0282/v1
 
-
-OpenCV stereovision tuner for windows   
+Only RUN 1.GUI_Real_time_without_calibration.py  
 
 # OpenCV stereovision tuner for windows
 ### 1.GUI without calibration process - "GUI_Real_time_without_calibration.py" 
